@@ -1,0 +1,100 @@
+body {
+    background: #fff9f4;
+    font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    color: #444;
+    line-height: 1.7;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #ff7e67;
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+form {
+    background: #fff;
+    padding: 35px 45px;
+    border-radius: 16px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    border: 1px solid #f0dede;
+    max-width: 500px;
+    width: 100%;
+}
+
+input[type="file"] {
+    font-size: 1rem;
+    padding: 10px;
+    border: 2px dashed #ffd6cc;
+    border-radius: 10px;
+    background-color: #fff3f0;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    color: #ff7e67;
+    transition: all 0.25s ease-in-out;
+}
+
+input[type="file"]:hover {
+    background-color: #ffeae5;
+    border-color: #ffb3a7;
+}
+
+button {
+    background-color: #ffa07a;
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 12px rgba(255, 160, 122, 0.3);
+}
+
+button:hover {
+    background-color: #ff8c66;
+    transform: translateY(-1px);
+}
+
+button:active {
+    background-color: #e7745d;
+    transform: translateY(0);
+}
+
+.result-section {
+    margin-top: 50px;
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+    border: 1px solid #f0dede;
+}
+
+.result-section h2 {
+    margin-bottom: 20px;
+    color: #ff7e67;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.result-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0dede;
+}
