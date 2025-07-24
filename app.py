@@ -6,7 +6,6 @@ import cv2
 import uuid
 
 app = Flask(__name__)
-model = YOLO('best.pt')
 
 UPLOAD_FOLDER = 'uploads'
 OUTPUT_FOLDER = 'outputs'
@@ -16,10 +15,12 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
 def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# Serve static files จาก public
+# Lazy-load YOLO model
+def get_model():
+    return YOLO('best.pt')
+
 @app.route('/public/<path:filename>')
 def public_files(filename):
     return send_from_directory('public', filename)
@@ -28,7 +29,7 @@ def public_files(filename):
 def index():
     result_image = None
 
-    # โหลดไฟล์ index.html มาอ่านเป็น string
+    # โหลด HTML template จาก index.html
     with open('index.html', 'r', encoding='utf-8') as f:
         html_template = f.read()
 
@@ -40,8 +41,8 @@ def index():
             img_path = os.path.join(UPLOAD_FOLDER, new_filename)
             file.save(img_path)
 
-            # Run YOLOv8 detection
-            results = model(img_path, conf=0.05)
+            model = get_model()
+            results = model(img_path, conf=0.25)  # ปรับ confidence ได้ตามต้องการ
 
             if results:
                 img_array = results[0].plot()
@@ -50,7 +51,6 @@ def index():
 
                 output_path = os.path.join(OUTPUT_FOLDER, new_filename)
                 img_pil.save(output_path)
-
                 result_image = new_filename
 
     return render_template_string(html_template, result_image=result_image)
